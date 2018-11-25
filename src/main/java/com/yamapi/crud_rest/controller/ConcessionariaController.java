@@ -13,37 +13,37 @@ import javassist.tools.web.BadHttpRequest;
 import com.yamapi.crud_rest.repository.*;
 import com.yamapi.crud_rest.entities.*;
 @RestController
-@RequestMapping(path = "/projects")
-public class ProjectController {
+@RequestMapping(path = "/concessionaria")
+public class ConcessionariaController {
 
     @Autowired
-    private ProjectRepository repository;
+    private ConcessionariaRepository repository;
 
     @GetMapping
-    public Iterable<Project> findAll() {
+    public Iterable<Concessionaria> findAll() {
         return repository.findAll();
     }
 
-    @GetMapping(path = "/{projectname}")
-    public Project find(@PathVariable("projectname") String projectname) {
-        return repository.findOne(projectname);
+    @GetMapping(path = "/{nome}")
+    public Concessionaria find(@PathVariable("nome") String nome) {
+        return repository.findOne(nome);
     }
 
     @PostMapping(consumes = "application/json")
-    public Project create(@RequestBody Project project) {
-        return repository.save(project);
+    public Concessionaria create(@RequestBody Concessionaria concessionaria) {
+        return repository.save(concessionaria);
     }
 
-    @DeleteMapping(path = "/{projectname}")
-    public void delete(@PathVariable("projectname") String projectname) {
-        repository.delete(projectname);
+    @DeleteMapping(path = "/{nome}")
+    public void delete(@PathVariable("nome") String id) {
+        repository.delete(id);
     }
 
-    @PutMapping(path = "/{projectname}")
-    public Project update(@PathVariable("projectname") String projectname, @RequestBody Project project) throws BadHttpRequest {
-        if (repository.exists(projectname)) {
-            project.setProjectName(projectname);
-            return repository.save(project);
+    @PutMapping(path = "/{nome}")
+    public Concessionaria update(@PathVariable("id") String nome, @RequestBody Concessionaria concessionaria) throws BadHttpRequest {
+        if (repository.exists(nome)) {
+        		concessionaria.setNome(nome);
+            return repository.save(concessionaria);
         } else {
             throw new BadHttpRequest();
         }
