@@ -60,18 +60,18 @@ public class Application {
 				break;
 			case 2:
 				System.out.println("Digite o id");
-				int id = reader.nextInt();
+				String id = reader.next();
 				read(id, nomeTabela);
 				break;
 			case 3:
 				System.out.println("Digite o id");
-				int idUpdate = reader.nextInt();
+				String idUpdate = reader.next();
 				System.out.println("Digite os atributos e os valores a serem criados no formato 'atributo: valor, atributo: valor, ...'");
 				String atributosUpdate = reader.next();
 				update(idUpdate, nomeTabela, atributosUpdate);
 			case 4:
 				System.out.println("Digite o id");
-				int idDelete = reader.nextInt();
+				String idDelete = reader.next();
 				delete(idDelete, nomeTabela);
 			case 5:
 				list(nomeTabela);
@@ -90,7 +90,8 @@ public class Application {
 		String[] pares = atributos.split(",");
 		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
 		for (String par:pares) {
-			params.add(new BasicNameValuePair(par.split(":")[0].trim(), par.split(":")[1].trim()));
+			String[] dupla = par.split(":");
+			params.add(new BasicNameValuePair(dupla[0].trim(), dupla[1].trim()));
 		}
 		 
 		HttpClient httpclient = HttpClients.createDefault();
@@ -123,7 +124,7 @@ public class Application {
 		}
 	}
 	
-	private static void read(int id, String tabela) {		 
+	private static void read(String id, String tabela) {		 
 		HttpClient httpclient = HttpClients.createDefault();
 		HttpGet httpget = new HttpGet(APIUrl + "/" + tabela + "/" + id);
 		
@@ -150,11 +151,12 @@ public class Application {
 		}
 	}
 	
-	private static void update(int id, String tabela, String atributos) {
+	private static void update(String id, String tabela, String atributos) {
 		String[] pares = atributos.split(",");
 		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
 		for (String par:pares) {
-			params.add(new BasicNameValuePair(par.split(":")[0].trim(), par.split(":")[1].trim()));
+			String[] dupla = par.split(":");
+			params.add(new BasicNameValuePair(dupla[0].trim(), dupla[1].trim()));
 		}
 		 
 		HttpClient httpclient = HttpClients.createDefault();
@@ -188,7 +190,7 @@ public class Application {
 
 	}
 	
-	private static void delete(int id, String tabela) {
+	private static void delete(String id, String tabela) {
 		HttpClient httpclient = HttpClients.createDefault();
 		HttpDelete httpdelete = new HttpDelete(APIUrl + "/" + tabela + "/" + id);
 		
