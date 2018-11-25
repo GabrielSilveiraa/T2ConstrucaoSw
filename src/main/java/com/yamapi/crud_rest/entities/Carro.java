@@ -9,8 +9,8 @@ public class Carro {
     @Id
     private String modelo;
     private String marca;
-    private double motor;
-    private int concessionariaId;
+    private String motor;
+    private String concessionariaId;
 	public String getMarca() {
 		return marca;
 	}
@@ -23,16 +23,17 @@ public class Carro {
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
-	public double getMotor() {
+//	nome":"teste","endereco":"teste","descricao":"teste","dataCriacao":"teste","tipo":"teste","capacidadeVeiculos":"50
+	public String getMotor() {
 		return motor;
 	}
-	public void setMotor(double motor) {
+	public void setMotor(String motor) {
 		this.motor = motor;
 	}
-	public int getConcessionariaId() {
+	public String getConcessionariaId() {
 		return concessionariaId;
 	}
-	public void setConcessionariId(int concessionariaId) {
+	public void setConcessionariId(String concessionariaId) {
 		this.concessionariaId = concessionariaId;
 	}
 	@Override

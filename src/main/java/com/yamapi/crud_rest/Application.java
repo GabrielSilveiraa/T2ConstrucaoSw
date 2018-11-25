@@ -18,6 +18,7 @@ import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.commons.*;
@@ -88,20 +89,26 @@ public class Application {
 	
 	private static void create(String atributos, String tabela) {
 		String[] pares = atributos.split(",");
-		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
-		for (String par:pares) {
-			String[] dupla = par.split(":");
-			params.add(new BasicNameValuePair(dupla[0].trim(), dupla[1].trim()));
-		}
-		 
-		HttpClient httpclient = HttpClients.createDefault();
-		HttpPost httppost = new HttpPost(APIUrl + "/" + tabela);
-		httppost.setHeader("Accept", "application/json");
-		httppost.setHeader("Content-type", "application/json");
-		
 		try {
-			httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
-		
+			String paramsString = "{";	
+
+			for (String par:pares) {
+				String[] dupla = par.split(":");
+				paramsString += "\""+dupla[0].trim()+"\":\""+ dupla[1].trim()+"\",";
+			}
+			char[] paramsChars = paramsString.toCharArray();
+			paramsChars[paramsChars.length-1] = '}';
+			paramsString = String.valueOf(paramsChars);
+//			System.out.println(paramsString);
+			StringEntity params = new StringEntity(paramsString);
+
+			HttpClient httpclient = HttpClients.createDefault();
+			HttpPost httppost = new HttpPost(APIUrl + "/" + tabela);
+			httppost.setHeader("Accept", "application/json");
+			httppost.setHeader("Content-type", "application/json");
+
+			httppost.setEntity(params);
+
 
 		//Execute and get the response.
 		HttpResponse response = httpclient.execute(httppost);
@@ -153,19 +160,28 @@ public class Application {
 	
 	private static void update(String id, String tabela, String atributos) {
 		String[] pares = atributos.split(",");
-		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
+//		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
+		try {
+		String paramsString = "{";	
+		
 		for (String par:pares) {
 			String[] dupla = par.split(":");
-			params.add(new BasicNameValuePair(dupla[0].trim(), dupla[1].trim()));
+			paramsString += "\""+dupla[0].trim()+"\":\""+ dupla[1].trim()+"\",";
+//			params.add(new BasicNameValuePair(dupla[0].trim(), dupla[1].trim()));
 		}
-		 
+		char[] paramsChars = paramsString.toCharArray();
+		paramsChars[paramsChars.length-1] = '}';
+		paramsString = String.valueOf(paramsChars);
+		System.out.println(paramsString);
+		StringEntity params = new StringEntity(paramsString); 
+//				new StringEntity("\"name\":\"myname\",\"age\":\"20\"} "); 
 		HttpClient httpclient = HttpClients.createDefault();
 		HttpPut httpput = new HttpPut(APIUrl + "/" + tabela + "/" + id);
 		httpput.setHeader("Accept", "application/json");
 		httpput.setHeader("Content-type", "application/json");
 		
-		try {
-			httpput.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+		
+			httpput.setEntity(params);
 		
 
 		//Execute and get the response.
