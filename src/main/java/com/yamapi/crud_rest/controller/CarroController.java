@@ -13,37 +13,37 @@ import javassist.tools.web.BadHttpRequest;
 import com.yamapi.crud_rest.repository.*;
 import com.yamapi.crud_rest.entities.*;
 @RestController
-@RequestMapping(path = "/users")
-public class UserController {
+@RequestMapping(path = "/carro")
+public class CarroController {
 
     @Autowired
-    private UserRepository repository;
+    private CarroRepository repository;
 
     @GetMapping
-    public Iterable<User> findAll() {
+    public Iterable<Carro> findAll() {
         return repository.findAll();
     }
 
-    @GetMapping(path = "/{username}")
-    public User find(@PathVariable("username") String username) {
-        return repository.findOne(username);
+    @GetMapping(path = "/{modelo}")
+    public Carro find(@PathVariable("modelo") String modelo) {
+        return repository.findOne(modelo);
     }
 
     @PostMapping(consumes = "application/json")
-    public User create(@RequestBody User user) {
-        return repository.save(user);
+    public Carro create(@RequestBody Carro carro) {
+        return repository.save(carro);
     }
 
-    @DeleteMapping(path = "/{username}")
-    public void delete(@PathVariable("username") String username) {
-        repository.delete(username);
+    @DeleteMapping(path = "/{modelo}")
+    public void delete(@PathVariable("modelo") String modelo) {
+        repository.delete(modelo);
     }
 
-    @PutMapping(path = "/{username}")
-    public User update(@PathVariable("username") String username, @RequestBody User user) throws BadHttpRequest {
-        if (repository.exists(username)) {
-            user.setUsername(username);
-            return repository.save(user);
+    @PutMapping(path = "/{modelo}")
+    public Carro update(@PathVariable("modelo") String modelo, @RequestBody Carro carro) throws BadHttpRequest {
+        if (repository.exists(modelo)) {
+        	carro.setModelo(modelo);
+            return repository.save(carro);
         } else {
             throw new BadHttpRequest();
         }
