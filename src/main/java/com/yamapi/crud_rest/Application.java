@@ -27,16 +27,23 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
+//Classe menu, responsavel pela logica da interface de interacao com o usuario
+//Opcoes que sao disponiveis para o usuario: create, reade, update, delete, list e quit.
+//A logica de interacao com as rotas http esta na classe operations.java
+
+
 @SpringBootApplication
 public class Application {
 
-	private static String APIUrl = "http://localhost:8080"; 
+	//private static String APIUrl = "http://localhost:8080"; 
+	//private static Operations operations;
 	
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
         menu();
     }
     
+    //Funcao principal do menu, um simples switch case para realizacao das operacoes descritas nos prints
 	private static void menu() { // menu principal
 			System.out
 					.println("\n\n### Sistema de aluguel de carro ###");
@@ -49,7 +56,7 @@ public class Application {
 			System.out.println("                  |     0 - Quit             |");
 			System.out.println("                  =========================\n");
 			Scanner reader = new Scanner(System.in);
-			int opcao = reader.nextInt();
+			int opcao = reader.nextInt();				
 			System.out.print("\n");
 			System.out.println("Digite o nome da tabela:");
 			String nomeTabela = reader.next();
@@ -57,25 +64,27 @@ public class Application {
 			case 1:
 				System.out.println("Digite os atributos e os valores a serem criados no formato 'atributo: valor, atributo: valor, ...'");
 				String atributos = reader.next();
-				create(atributos, nomeTabela);
+				Operations.create(atributos, nomeTabela);
 				break;
 			case 2:
 				System.out.println("Digite o id");
 				String id = reader.next();
-				read(id, nomeTabela);
+				Operations.read(id, nomeTabela);
 				break;
 			case 3:
 				System.out.println("Digite o id");
 				String idUpdate = reader.next();
 				System.out.println("Digite os atributos e os valores a serem criados no formato 'atributo: valor, atributo: valor, ...'");
 				String atributosUpdate = reader.next();
-				update(idUpdate, nomeTabela, atributosUpdate);
+				Operations.update(idUpdate, nomeTabela, atributosUpdate);
+				break;
 			case 4:
 				System.out.println("Digite o id");
 				String idDelete = reader.next();
-				delete(idDelete, nomeTabela);
+				Operations.delete(idDelete, nomeTabela);
+				break;
 			case 5:
-				list(nomeTabela);
+				Operations.list(nomeTabela);
 				break;
 			case 0:
 				break;
@@ -87,175 +96,5 @@ public class Application {
 	}
 	
 	
-	private static void create(String atributos, String tabela) {
-		String[] pares = atributos.split(",");
-		try {
-			String paramsString = "{";	
-
-			for (String par:pares) {
-				String[] dupla = par.split(":");
-				paramsString += "\""+dupla[0].trim()+"\":\""+ dupla[1].trim()+"\",";
-			}
-			char[] paramsChars = paramsString.toCharArray();
-			paramsChars[paramsChars.length-1] = '}';
-			paramsString = String.valueOf(paramsChars);
-//			System.out.println(paramsString);
-			StringEntity params = new StringEntity(paramsString);
-
-			HttpClient httpclient = HttpClients.createDefault();
-			HttpPost httppost = new HttpPost(APIUrl + "/" + tabela);
-			httppost.setHeader("Accept", "application/json");
-			httppost.setHeader("Content-type", "application/json");
-
-			httppost.setEntity(params);
-
-
-		//Execute and get the response.
-		HttpResponse response = httpclient.execute(httppost);
-		HttpEntity entity = response.getEntity();
-
-		if (entity != null) {
-		    try (InputStream instream = entity.getContent()) {
-		    	System.out.println(IOUtils.toString(instream, "UTF-8"));
-		    }
-		}
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	
-	private static void read(String id, String tabela) {		 
-		HttpClient httpclient = HttpClients.createDefault();
-		HttpGet httpget = new HttpGet(APIUrl + "/" + tabela + "/" + id);
-		
-		try {
-		
-		//Execute and get the response.
-		HttpResponse response = httpclient.execute(httpget);
-		HttpEntity entity = response.getEntity();
-
-		if (entity != null) {
-		    try (InputStream instream = entity.getContent()) {
-		    	System.out.println(IOUtils.toString(instream, "UTF-8"));
-		    }
-		}
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	private static void update(String id, String tabela, String atributos) {
-		String[] pares = atributos.split(",");
-//		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
-		try {
-		String paramsString = "{";	
-		
-		for (String par:pares) {
-			String[] dupla = par.split(":");
-			paramsString += "\""+dupla[0].trim()+"\":\""+ dupla[1].trim()+"\",";
-//			params.add(new BasicNameValuePair(dupla[0].trim(), dupla[1].trim()));
-		}
-		char[] paramsChars = paramsString.toCharArray();
-		paramsChars[paramsChars.length-1] = '}';
-		paramsString = String.valueOf(paramsChars);
-		System.out.println(paramsString);
-		StringEntity params = new StringEntity(paramsString); 
-//				new StringEntity("\"name\":\"myname\",\"age\":\"20\"} "); 
-		HttpClient httpclient = HttpClients.createDefault();
-		HttpPut httpput = new HttpPut(APIUrl + "/" + tabela + "/" + id);
-		httpput.setHeader("Accept", "application/json");
-		httpput.setHeader("Content-type", "application/json");
-		
-		
-			httpput.setEntity(params);
-		
-
-		//Execute and get the response.
-		HttpResponse response = httpclient.execute(httpput);
-		HttpEntity entity = response.getEntity();
-
-		if (entity != null) {
-		    try (InputStream instream = entity.getContent()) {
-		    	System.out.println(IOUtils.toString(instream, "UTF-8"));
-		    }
-		}
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-	
-	private static void delete(String id, String tabela) {
-		HttpClient httpclient = HttpClients.createDefault();
-		HttpDelete httpdelete = new HttpDelete(APIUrl + "/" + tabela + "/" + id);
-		
-		try {
-		//Execute and get the response.
-		HttpResponse response = httpclient.execute(httpdelete);
-		HttpEntity entity = response.getEntity();
-
-		if (entity != null) {
-		    try (InputStream instream = entity.getContent()) {
-		    	System.out.println(IOUtils.toString(instream, "UTF-8"));
-		    }
-		}
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	private static void list(String tabela) {
-		HttpClient httpclient = HttpClients.createDefault();
-		HttpGet httpget = new HttpGet(APIUrl + "/" + tabela);
-		
-		try {
-		
-		//Execute and get the response.
-		HttpResponse response = httpclient.execute(httpget);
-		HttpEntity entity = response.getEntity();
-
-		if (entity != null) {
-		    try (InputStream instream = entity.getContent()) {
-		    	System.out.println(IOUtils.toString(instream, "UTF-8"));
-		    }
-		}
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 }

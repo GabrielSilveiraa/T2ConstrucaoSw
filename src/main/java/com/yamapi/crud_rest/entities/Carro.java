@@ -7,10 +7,12 @@ import javax.persistence.Id;
 public class Carro {
 
     @Id
+    private String renavam;
     private String modelo;
     private String marca;
-    private String motor;
-    private String concessionariaId;
+    private String valorDiaria;
+    
+    
 	public String getMarca() {
 		return marca;
 	}
@@ -24,23 +26,23 @@ public class Carro {
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
-	
-	public String getMotor() {
-		return motor;
+
+	public String getRenavam() {
+		return renavam;
 	}
-	public void setMotor(String motor) {
-		this.motor = motor;
+	public void setRenavam(String renavam) {
+		this.renavam = renavam;
 	}
-	public String getConcessionariaId() {
-		return concessionariaId;
+	public String getValorDiaria() {
+		return valorDiaria;
 	}
-	public void setConcessionariId(String concessionariaId) {
-		this.concessionariaId = concessionariaId;
+	public void setValorDiaria(String valorDiaria) {
+		this.valorDiaria = valorDiaria;
 	}
 	@Override
 	public String toString() {
-		return "Carro [marca=" + marca + ", modelo=" + modelo + ", motor=" + motor + ", concessionariId="
-				+ concessionariaId + "]";
+		return "Carro [marca=" + marca + ", modelo=" + modelo + ", renavam=" + renavam + ", valorDiaria="
+				+ valorDiaria + "]";
 	}
 
    

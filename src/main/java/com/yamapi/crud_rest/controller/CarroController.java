@@ -24,9 +24,9 @@ public class CarroController {
         return repository.findAll();
     }
 
-    @GetMapping(path = "/{modelo}")
-    public Carro find(@PathVariable("modelo") String modelo) {
-        return repository.findOne(modelo);
+    @GetMapping(path = "/{renavam}")
+    public Carro find(@PathVariable("renavam") String renavam) {
+        return repository.findOne(renavam);
     }
 
     @PostMapping(consumes = "application/json")
@@ -34,15 +34,15 @@ public class CarroController {
         return repository.save(carro);
     }
 
-    @DeleteMapping(path = "/{modelo}")
-    public void delete(@PathVariable("modelo") String modelo) {
-        repository.delete(modelo);
+    @DeleteMapping(path = "/{renavam}")
+    public void delete(@PathVariable("renavam") String renavam) {
+        repository.delete(renavam);
     }
 
-    @PutMapping(path = "/{modelo}")
-    public Carro update(@PathVariable("modelo") String modelo, @RequestBody Carro carro) throws BadHttpRequest {
-        if (repository.exists(modelo)) {
-        	carro.setModelo(modelo);
+    @PutMapping(path = "/{renavam}")
+    public Carro update(@PathVariable("renavam") String renavam, @RequestBody Carro carro) throws BadHttpRequest {
+        if (repository.exists(renavam)) {
+        	carro.setRenavam(renavam);
             return repository.save(carro);
         } else {
             throw new BadHttpRequest();
