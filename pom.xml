@@ -67,6 +67,16 @@
 </dependency>
 
 
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-test</artifactId>
+    <version>4.0.5.RELEASE</version>
+    <scope>test</scope>
+</dependency>
+	
+
+
         <!-- MySQL Connector-J -->
         <dependency>
             <groupId>mysql</groupId>

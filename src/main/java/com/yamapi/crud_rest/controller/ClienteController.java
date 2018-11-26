@@ -41,8 +41,8 @@ public class ClienteController {
 	    }
 
 	    @DeleteMapping(path = "/{cpf}")
-	    public void delete(@PathVariable("cpf") String id) {
-	        repository.delete(id);
+	    public void delete(@PathVariable("cpf") String cpf) {
+	        repository.delete(cpf);
 	    }
 
 	    @PutMapping(path = "/{cpf}")
