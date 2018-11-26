@@ -49,7 +49,7 @@ public class Application {
 			System.out.println("                  |     0 - Quit             |");
 			System.out.println("                  =========================\n");
 			Scanner reader = new Scanner(System.in);
-			int opcao = reader.nextInt();
+			int opcao = reader.nextInt();				
 			System.out.print("\n");
 			System.out.println("Digite o nome da tabela:");
 			String nomeTabela = reader.next();
@@ -128,6 +128,10 @@ public class Application {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Formato de entrada errado, verifique a grafia e tente outra vez.");
+			
+			return;
 		}
 	}
 	
@@ -156,6 +160,11 @@ public class Application {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		catch (Exception e) {
+		System.out.println("Formato de entrada errado, verifique a grafia e tente outra vez.");
+		
+		return;
+	}
 	}
 	
 	private static void update(String id, String tabela, String atributos) {
@@ -201,8 +210,12 @@ public class Application {
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			e.printStackTrace();		
+		} catch (Exception e) {
+		System.out.println("Formato de entrada errado, verifique a grafia e tente outra vez.");
+		
+		return;
+	}
 
 	}
 	
@@ -228,8 +241,12 @@ public class Application {
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			e.printStackTrace();		
+		} catch (Exception e) {
+		System.out.println("Formato de entrada errado, verifique a grafia e tente outra vez.");
+		
+		return;
+	}
 	}
 	
 	private static void list(String tabela) {
@@ -255,7 +272,11 @@ public class Application {
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			e.printStackTrace();		
+		} catch (Exception e) {
+		System.out.println("Formato de entrada errado, verifique a grafia e tente outra vez.");
+		
+		return;
+	}
 	}
 }
