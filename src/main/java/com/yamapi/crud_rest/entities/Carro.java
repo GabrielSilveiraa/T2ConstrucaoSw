@@ -23,7 +23,6 @@ public class Carro {
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
-//	nome":"teste","endereco":"teste","descricao":"teste","dataCriacao":"teste","tipo":"teste","capacidadeVeiculos":"50
 	public String getMotor() {
 		return motor;
 	}
