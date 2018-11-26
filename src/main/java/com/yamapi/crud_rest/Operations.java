@@ -17,12 +17,19 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 
+
+
+//Classe com a logica de conexao do JAVA e as APIs
+//Aqui fornecera as ações de CREATE, UPDATE, DELETE, LIST E GET
+
 public class Operations {
 
 	
 	private static String APIUrl = "http://localhost:8080"; 
 
 	
+	//Recebe os atributos do objeto a ser inserido no formato: "coluna:valor,..." e a tabela no qual o objeto ira ser inserido
+	//Utiliza requests Https para se unir ao legado do yamaapi.
 	static Boolean create(String atributos, String tabela) {
 		String[] pares = atributos.split(",");
 		try {
@@ -79,6 +86,8 @@ public class Operations {
 		return true;
 	}
 	
+	//Recebe os atributos do objeto a ser lido no formato: "coluna:valor,..." e a tabela no qual o objeto ira ser lido
+	//Utiliza requests Https para se unir ao legado do yamaapi. REQUEST /GET/ID
 	static Boolean read(String id, String tabela) {		 
 		HttpClient httpclient = HttpClients.createDefault();
 		HttpGet httpget = new HttpGet(APIUrl + "/" + tabela + "/" + id);
@@ -120,6 +129,8 @@ public class Operations {
 		
 	}
 	
+	//Recebe os atributos do objeto a ser atualizado no formato: "coluna:valor,..." e a tabela no qual o objeto ira ser atualizado
+	//Utiliza requests Https para se unir ao legado do yamaapi. REQUEST: /PATCH/ID
 	static Boolean update(String id, String tabela, String atributos) {
 		String[] pares = atributos.split(",");
 //		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
@@ -180,6 +191,8 @@ public class Operations {
 		
 	}
 	
+	//Recebe o ID (valor da coluna) e o nome da tabela do objeto
+	//Utiliza requests Https para se unir ao legado do yamaapi. Request: /DELETE/ID
 	static Boolean delete(String id, String tabela) {
 		HttpClient httpclient = HttpClients.createDefault();
 		HttpDelete httpdelete = new HttpDelete(APIUrl + "/" + tabela + "/" + id);
@@ -218,6 +231,8 @@ public class Operations {
 		return true;
 	}
 	
+	//Recebe por parametro a tabela dos objetos a serem listados
+	//Utiliza requests Https para se unir ao legado do yamaapi.
 	static Boolean list(String tabela) {
 		HttpClient httpclient = HttpClients.createDefault();
 		HttpGet httpget = new HttpGet(APIUrl + "/" + tabela);

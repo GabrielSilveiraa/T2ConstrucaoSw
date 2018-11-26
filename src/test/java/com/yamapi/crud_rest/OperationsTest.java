@@ -10,6 +10,9 @@ import com.yamapi.crud_rest.entities.Cliente;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
+
+//Classe que testa as operacoes basicas da classe operations (logica bruta do trabalho)
+
 public class OperationsTest extends TestCase {
 
 	@InjectMocks

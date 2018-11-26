@@ -27,6 +27,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
+//Classe menu, responsavel pela logica da interface de interacao com o usuario
+//Opcoes que sao disponiveis para o usuario: create, reade, update, delete, list e quit.
+//A logica de interacao com as rotas http esta na classe operations.java
+
+
 @SpringBootApplication
 public class Application {
 
@@ -38,6 +43,7 @@ public class Application {
         menu();
     }
     
+    //Funcao principal do menu, um simples switch case para realizacao das operacoes descritas nos prints
 	private static void menu() { // menu principal
 			System.out
 					.println("\n\n### Sistema de aluguel de carro ###");
