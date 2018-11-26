@@ -3,23 +3,19 @@ package com.yamapi.crud_rest;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
 
 public class Operations {
 
@@ -62,12 +58,18 @@ public class Operations {
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Aconteceu um erro inesperado, por favor tente outra vez.");
+			return false;
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Aconteceu um erro inesperado, por favor tente outra vez.");
+			return false;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Aconteceu um erro inesperado, por favor tente outra vez.");
+			return false;
 		} catch (Exception e) {
 			System.out.println("Formato de entrada errado, verifique a grafia e tente outra vez.");
 			
@@ -95,12 +97,18 @@ public class Operations {
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Aconteceu um erro inesperado, por favor tente outra vez.");
+			return false;
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Aconteceu um erro inesperado, por favor tente outra vez.");
+			return false;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Aconteceu um erro inesperado, por favor tente outra vez.");
+			return false;
 		}
 		catch (Exception e) {
 		System.out.println("Formato de entrada errado, verifique a grafia e tente outra vez.");
@@ -150,12 +158,18 @@ public class Operations {
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Aconteceu um erro inesperado, por favor tente outra vez.");
+			return false;
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Aconteceu um erro inesperado, por favor tente outra vez.");
+			return false;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();		
+			e.printStackTrace();	
+			System.out.println("Aconteceu um erro inesperado, por favor tente outra vez.");
+			return false;
 		} catch (Exception e) {
 		System.out.println("Formato de entrada errado, verifique a grafia e tente outra vez.");
 		
@@ -183,12 +197,18 @@ public class Operations {
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Aconteceu um erro inesperado, por favor tente outra vez.");
+			return false;
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Aconteceu um erro inesperado, por favor tente outra vez.");
+			return false;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();		
+			e.printStackTrace();	
+			System.out.println("Aconteceu um erro inesperado, por favor tente outra vez.");
+			return false;
 		} catch (Exception e) {
 		System.out.println("Formato de entrada errado, verifique a grafia e tente outra vez.");
 		
@@ -216,12 +236,18 @@ public class Operations {
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Aconteceu um erro inesperado, por favor tente outra vez.");
+			return false;
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Aconteceu um erro inesperado, por favor tente outra vez.");
+			return false;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();		
+			System.out.println("Aconteceu um erro inesperado, por favor tente outra vez.");
+			return false;
 		} catch (Exception e) {
 		System.out.println("Formato de entrada errado, verifique a grafia e tente outra vez.");
 		
