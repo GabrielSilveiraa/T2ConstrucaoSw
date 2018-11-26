@@ -61,23 +61,23 @@
   
   Exemplo pratico da ação de deletar um cliente. (O mesmo inserido acima).
   
-    ```
+  ```
   Digite o nome da tabela:
   cliente
   Digite o id
   123456789
-    ```
-   
-   * Opção 5 - List -Função para listar todos os registros de uma tabela do banco de dados.
-     Ao selecionar a opção 2 sera necessário passar o nome da tabela em que se deseja consultar os registros.
+  ```
+  
+  * Opção 5 - List -Função para listar todos os registros de uma tabela do banco de dados.
+    Ao selecionar a opção 2 sera necessário passar o nome da tabela em que se deseja consultar os registros.
      
-     Exemplo pratico da ação de consultar todos os clientes.
+    Exemplo pratico da ação de consultar todos os clientes.
        
-    ```
-     Digite o nome da tabela:
-     cliente
+   ```
+    Digite o nome da tabela:
+    cliente
 
-    ```
+   ```
   
   * Opção 6 - Quit - Opção para encerrar a execução da aplicação.
     
