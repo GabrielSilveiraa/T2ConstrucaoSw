@@ -14,9 +14,9 @@ public class Concessionaria {
     private String descricao;
     private String dataCriacao;
     private String tipo;
-    private boolean oficina;
-    private boolean importado;
-    private int capacidadeVeiculos;
+    private String oficina;
+    private String importado;
+    private String capacidadeVeiculos;
     
     public String getNome() {
 		return nome;
@@ -48,22 +48,22 @@ public class Concessionaria {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public boolean isOficina() {
+	public String isOficina() {
 		return oficina;
 	}
-	public void setOficina(boolean oficina) {
+	public void setOficina(String oficina) {
 		this.oficina = oficina;
 	}
-	public boolean isImportado() {
+	public String isImportado() {
 		return importado;
 	}
-	public void setImportado(boolean importado) {
+	public void setImportado(String importado) {
 		this.importado = importado;
 	}
-	public int getCapacidadeVeiculos() {
+	public String getCapacidadeVeiculos() {
 		return capacidadeVeiculos;
 	}
-	public void setCapacidadeVeiculos(int capacidadeVeiculos) {
+	public void setCapacidadeVeiculos(String capacidadeVeiculos) {
 		this.capacidadeVeiculos = capacidadeVeiculos;
 	}
 	
